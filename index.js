@@ -40,8 +40,8 @@ app.get("/privacypolicy", (req ,res)=>{
   res.render('privacypolicy')
 });
 
-app.get("/navbar" ,(req , res)=>{
-  res.render('navbar');
+app.get("/profile" ,(req , res)=>{
+  res.render('profile');
 });
 app.get("/profile" , (req , res)=>{
   res.render('profile');
@@ -65,6 +65,7 @@ const userSchema = new mongoose.Schema({
 
 // Define user model
 const User = mongoose.model('User', userSchema);
+const collection = new mongoose.model("users" , userSchema)
 
 // Use body-parser middleware to parse request body
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -74,6 +74,15 @@ note.addEventListener('input', function() {
   const numWords = text.match(/\b\w+\b/g);
   wordCount.innerText = numWords ? numWords.length : 0;
 });
+async function syncNotes() {
+  if (isOnline()) {
+    const notes = JSON.parse(localStorage.getItem('note')) || [];
+    for (const note of notes) {
+      await saveNoteToMongoDB(note);
+    }
+    localStorage.setItem('note', JSON.stringify([]));
+  }
+}
 
 const termsLink = document.createElement('a');
 termsLink.href = 'http://localhost:8000/termsofuse';
